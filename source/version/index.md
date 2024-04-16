@@ -44,3 +44,19 @@ BUG - ScrollReveal 与 css transform冲突，如果想要鼠标悬停卡片时�
 新增 self-post-nav.css
 使用 @import 挂载于 post.css, post.ejs 中设置相关参数
 以 Themes cards 为模板，新增前后篇导航
+<br>
+## Version 0.3:
+#### 1. Waline 新增明暗主题适配
+修改 main.js 以及 waline 配置，实现 waline 评论区明暗切换
+
+## Version 0.4:
+#### 1. 每页页脚新增网页访客数和访问量
+header.ejs 导入不蒜子，footer.ejs 中使用
+
+## Version 0.5:
+#### 1. Post 文章每页开头添加一张零尺寸的封面图（微信小程序用）
+Post 每页新增 <image> 封面 </image>
+#### 2. Nav 新增小程序码显示
+修改 nav.css, nav.ejs 新增 self-miniprogram-code.js
+#### 3. 优化 回到顶部 滚动进度 小程序码显示 代码逻辑
+新增相对应的 js 代码并以 script 形式绑定到对应元素上

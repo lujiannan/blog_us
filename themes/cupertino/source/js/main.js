@@ -1,7 +1,7 @@
 (() => {
     var navEl = document.getElementById('theme-nav');
     navEl.addEventListener('click', (e) => {
-        if (window.innerWidth <= 600) {
+        if (window.innerWidth <= 800) {
             if (navEl.classList.contains('open')) {
                 navEl.style.height = ''
             } else {
@@ -19,7 +19,7 @@
         if (navEl.classList.contains('open')) {
             navEl.style.height = 48 + document.querySelector('#theme-nav .nav-items').clientHeight + 'px'
         }
-        if (window.innerWidth > 600) {
+        if (window.innerWidth > 800) {
             if (navEl.classList.contains('open')) {
                 navEl.style.height = ''
                 navEl.classList.remove('open')
@@ -42,13 +42,41 @@
         }
     }
 
+    const ColorScheme = new class {
+        constructor() {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { this.updateCurrent(Cookies.get('color-scheme', 'auto')) })
+        }
+        get() {
+            const stored = Cookies.get('color-scheme', 'auto')
+            this.updateCurrent(stored)
+            return stored
+        }
+        set(value) {
+            bodyEl.setAttribute('data-color-scheme', value)
+            Cookies.set('color-scheme', value)
+            this.updateCurrent(value)
+            return value
+        }
+        updateCurrent(value) {
+            var current = 'light'
+            if (value == 'auto') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    current = 'dark'
+                }
+            } else {
+                current = value
+            }
+            document.body.setAttribute('data-current-color-scheme', current)
+        }
+    }
+
     if (document.getElementById('theme-color-scheme-toggle')) {
         var bodyEl = document.body
         var themeColorSchemeToggleEl = document.getElementById('theme-color-scheme-toggle')
         var options = themeColorSchemeToggleEl.getElementsByTagName('input')
 
-        if (Cookies.get('color-scheme', 'auto')) {
-            bodyEl.setAttribute('data-color-scheme', Cookies.get('color-scheme', 'auto'))
+        if (ColorScheme.get()) {
+            bodyEl.setAttribute('data-color-scheme', ColorScheme.get())
         }
 
         for (const option of options) {
@@ -57,8 +85,7 @@
             }
             option.addEventListener('change', (ev) => {
                 var value = ev.target.value
-                bodyEl.setAttribute('data-color-scheme', value)
-                Cookies.set('color-scheme', value)
+                ColorScheme.set(value)
                 for (const o of options) {
                     if (o.value != value) {
                         o.checked = false
@@ -89,29 +116,6 @@
             navEl.after(banner)
         }
     }
-
-    // Add back to top button for every post and info pages
-    // When to show the scroll link
-    const pageheight = document.documentElement.clientHeight;
-    // Our scroll link element
-    const toTopBtn = document.getElementById("return-to-top")
-    let scrollTop = 0
-    window.onscroll = () => {
-        scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        // 当滚动条滚到当前页面高度1/2的时候，显示“回到顶部”按钮
-        if (scrollTop >= pageheight/2) {    // If page is scrolled more than 50px
-            $('#return-to-top').fadeIn("fast");       // Fade in the arrow
-        } else {
-            $('#return-to-top').fadeOut("fast");      // Else fade out the arrow
-        }
-        // scrollTop > pageheight/2 ? (toTopBtn.style.display = 'block') : (toTopBtn.style.display = 'none')
-    }
-    toTopBtn.addEventListener('click', function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        })
-    })
 
     // add a time cat on the comment page
     $(".option").on("click", function () {
@@ -149,30 +153,4 @@
         $(".option:nth-child(4)").addClass("active");
         $(".time").attr('class', 'time night');
     }
-
-    // vertical scroll progress bar, address: https://codepen.io/EricPorter/pen/rNexdrG
-    $(window).scroll(function(){
-        var top = $(window).scrollTop();
-        var height = $(document).height();
-        height = height - $(window).height();
-        var progress = (top)/height;
-        progress = progress * 100;
-        progress = Math.round(progress);
-        var readPercentage = document.getElementById("percentage");
-        if (progress > 0) {
-            readPercentage.style.visibility = "visible";
-        } else if (progress <= 0) {
-            readPercentage.style.visibility = "hidden";
-        }
-        if(progress >= 100){
-            progress = 100;
-            // progress = "100% - COMPLETE！";
-            readPercentage.style.background = "limegreen";
-        } else {
-            readPercentage.style.background = "grey";
-        }
-        progress = progress + "%";
-        // progress = progress.substring(0, progress.length - 2);
-        $("#percentage").html(progress);
-    });
 })()

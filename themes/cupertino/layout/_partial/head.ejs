@@ -46,8 +46,9 @@
   <% if (theme.rainbow_banner) { %>
   <%- css('css/rainbow-banner') %>
   <% } %>
-  <%- css('css/waline') %>
-  <%- css('css/giscus') %>
+  <% if (config.giscus) { %>
+    <%- css('css/giscus') %>
+  <% } %>
   <% if (page.path == "index.html") { %>
   <%- css('css/index') %>
   <% } %>
@@ -61,8 +62,11 @@
 
   <!-- waline comment -->
   <% if (config.waline) { %>
-    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
-    <link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet' />
+    <script src='https://unpkg.com/@waline/client@v2/dist/waline.js'></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+    />
   <% } %>
 
   <!-- trigger css while scroll -->
@@ -75,4 +79,9 @@
 
   <!-- jQuery -->
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <!-- busuanzi -->
+  <% if (config.busuanzi.enable) { %>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <% } %>
 </head>

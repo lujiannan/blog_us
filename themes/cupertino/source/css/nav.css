@@ -93,68 +93,83 @@ nav .nav-item-icon {
 }
 
 body[data-color-scheme="auto"] nav .nav-item-github, body[data-color-scheme="light"] nav .nav-item-github {
-    background-image: url(/theme-img/github-mark-dark.png);
+    background-image: url(../theme-img/github-mark-dark.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-qq, body[data-color-scheme="light"] nav .nav-item-qq {
-    background-image: url(/theme-img/qq-mark-dark.png);
+    background-image: url(../theme-img/qq-mark-dark.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-discord, body[data-color-scheme="light"] nav .nav-item-discord {
-    background-image: url(/theme-img/discord-mark-dark.svg);
+    background-image: url(../theme-img/discord-mark-dark.svg);
+    background-color: rgba(150,150,150,0);
+}
+
+body[data-color-scheme="auto"] nav .nav-item-miniprogram, body[data-color-scheme="light"] nav .nav-item-miniprogram {
+    background-image: url(../theme-img/miniprogram-mark-dark.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="auto"] nav .nav-item-email, body[data-color-scheme="light"] nav .nav-item-email {
-    background-image: url(/theme-img/email-mark-dark.png);
+    background-image: url(../theme-img/email-mark-dark.png);
     background-color: rgba(150,150,150,0);
 }
 
 @media (prefers-color-scheme: dark) {
     body[data-color-scheme="auto"] nav .nav-item-github {
-        background-image: url(/theme-img/github-mark-light.png);
+        background-image: url(../theme-img/github-mark-light.png);
         background-color: rgba(150,150,150,0);
     }
 
     body[data-color-scheme="auto"] nav .nav-item-qq {
-        background-image: url(/theme-img/qq-mark-light.png);
+        background-image: url(../theme-img/qq-mark-light.png);
         background-color: rgba(150,150,150,0);
     }
 
     body[data-color-scheme="auto"] nav .nav-item-discord {
-        background-image: url(/theme-img/discord-mark-light.svg);
+        background-image: url(../theme-img/discord-mark-light.svg);
+        background-color: rgba(150,150,150,0);
+    }
+
+    body[data-color-scheme="auto"] nav .nav-item-miniprogram {
+        background-image: url(../theme-img/miniprogram-mark-light.png);
         background-color: rgba(150,150,150,0);
     }
 
     body[data-color-scheme="auto"] nav .nav-item-email {
-        background-image: url(/theme-img/email-mark-light.png);
+        background-image: url(../theme-img/email-mark-light.png);
         background-color: rgba(150,150,150,0);
     }
 }
 
 body[data-color-scheme="dark"] nav .nav-item-github {
-    background-image: url(/theme-img/github-mark-light.png);
+    background-image: url(../theme-img/github-mark-light.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-qq {
-    background-image: url(/theme-img/qq-mark-light.png);
+    background-image: url(../theme-img/qq-mark-light.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-discord {
-    background-image: url(/theme-img/discord-mark-light.svg);
+    background-image: url(../theme-img/discord-mark-light.svg);
+    background-color: rgba(150,150,150,0);
+}
+
+body[data-color-scheme="dark"] nav .nav-item-miniprogram {
+    background-image: url(../theme-img/miniprogram-mark-light.png);
     background-color: rgba(150,150,150,0);
 }
 
 body[data-color-scheme="dark"] nav .nav-item-email {
-    background-image: url(/theme-img/email-mark-light.png);
+    background-image: url(../theme-img/email-mark-light.png);
     background-color: rgba(150,150,150,0);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     nav {
         height: 48px;
         overflow: hidden;
@@ -231,4 +246,26 @@ body[data-color-scheme="dark"] nav .nav-item-email {
         transform: translate(0, -0%);
         opacity: 1;
     }
+}
+
+.preview-container {
+    user-select: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100vw);
+    height: calc(100vh);
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+}
+
+.preview-container img {
+    max-height: 80%;
+    max-width: 80%;
+    object-fit: contain;
+    border-radius: 24px;
 }

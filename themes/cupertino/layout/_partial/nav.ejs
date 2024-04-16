@@ -5,18 +5,25 @@
         <div class="nav-items">
             <a class="nav-item nav-item-home" href="<%= config.root %>"><%= __('home') %></a>
             <% for (const i in theme.nav.items) { %>
-            <% if (i == 'GitHub' || i == 'github' || i == 'gh') { %>
-            <a class="nav-item nav-item-github nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
-            <% } else if (i == 'Discord' || i == 'discord'){ %>
-            <a class="nav-item nav-item-discord nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
-            <% } else if (i == 'QQ' || i == 'qq'){ %>
-            <a class="nav-item nav-item-qq nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
-            <% } else if (i == 'Email' || i == 'email'){ %>
-            <a class="nav-item nav-item-email nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
-            <% } else { %>
-            <a class="nav-item" href="<%- url_for(theme.nav.items[i]) %>"><%= i %></a>
-            <% } %>
+                <% if (i == 'GitHub' || i == 'github' || i == 'gh') { %>
+                    <a class="nav-item nav-item-github nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
+                <% } else if (i == 'Discord' || i == 'discord'){ %>
+                    <a class="nav-item nav-item-discord nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
+                <% } else if (i == 'QQ' || i == 'qq'){ %>
+                    <a class="nav-item nav-item-qq nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
+                <% } else if (i == 'Email' || i == 'email'){ %>
+                    <a class="nav-item nav-item-email nav-item-icon" href="<%- url_for(theme.nav.items[i]) %>" target="_blank">&nbsp;</a>
+                <% } else if (i == 'Miniprogram' || i == 'miniprogram'){ %>
+                    <div class="nav-item nav-item-miniprogram nav-item-icon" id="sunCodeIcon">&nbsp;</div>
+                <% } else { %>
+                    <a class="nav-item" href="<%- url_for(theme.nav.items[i]) %>"><%= i %></a>
+                <% } %>
             <% } %>
         </div>
     </div>
 </nav>
+
+<div class="preview-container" id="suncodeContainer">
+    <img src="https://ritie-jonie-1312559530.cos.ap-nanjing.myqcloud.com/miniprogram/miniprogram-suncode.jpg" alt="Wechat Miniprogram Code">
+</div>
+<script type="text/javascript" src="/js/self-miniprogram-code.js"></script>
